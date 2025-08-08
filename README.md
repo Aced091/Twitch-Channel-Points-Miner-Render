@@ -728,3 +728,43 @@ If you can't install `cryptography`, please try:
 
 ## Disclaimer
 This project comes with no guarantee or warranty. You are responsible for whatever happens from using this project. It is possible to get soft or hard banned by using this project if you are not careful. This is a personal project and is in no way affiliated with Twitch.
+
+# Schwarzatal Karte (Satellit + Infrastruktur + Höhenwirkung)
+
+Erzeugt eine hochwertige Karte des Schwarzatals mit aktueller Satellitenbild-Basiskarte (Esri World Imagery), Hillshade (Esri World Hillshade), detaillierter OSM-Infrastruktur (Straßen, Bahn, Gewässer, Gebäude) und klaren Beschriftungen (Label-Kacheln).
+
+## Nutzung
+
+1. Python-Umgebung erstellen und Abhängigkeiten installieren:
+
+```bash
+python -m venv /workspace/.venv && \
+source /workspace/.venv/bin/activate && \
+pip install -U pip && \
+pip install -r /workspace/requirements.txt
+```
+
+2. Karte generieren (PNG und PDF):
+
+```bash
+source /workspace/.venv/bin/activate && \
+python /workspace/scripts/build_schwarzatal_map.py \
+  --place "Stadt Schwarzatal, Thüringen, Deutschland" \
+  --size 14x20 \
+  --dpi 300 \
+  --buffer-m 0 \
+  --out /workspace/output/schwarzatal_map
+```
+
+- `--size` in Zoll; für Poster z.B. 24x36 (A1/A0 entsprechend umrechnen)
+- `--dpi` 300–600 für Druck
+- `--buffer-m` fügt Puffer um die Grenze hinzu
+- `--place` kann angepasst werden (z.B. "Schwarzatal, Thüringen, Deutschland")
+
+3. Ergebnisse liegen in `output/` als PNG und PDF.
+
+## Hinweise
+
+- Kachel-Dienste unterliegen Nutzungsbedingungen. Prüfe Nutzungsrechte für Druck/Weitergabe.
+- OSM-Daten sind community-geführt; Details können je nach Gebiet variieren.
+- Für extrem große Drucke die `--size` hochsetzen und `--dpi` ggf. auf 600 erhöhen.
